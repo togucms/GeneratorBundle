@@ -1,0 +1,13 @@
+{
+    "name": "togu/generator-bundle",
+    "description": "Togu Generator Bundle",
+    "require": {
+    },
+    "license": "GPL v3",
+    "authors": [
+        {
+            "name": "Alessandro Siragusa",
+            "email": "alessandro.siragusa@gmail.com"
+        }
+    ]
+}

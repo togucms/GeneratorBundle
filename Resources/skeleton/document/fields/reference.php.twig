@@ -1,0 +1,58 @@
+{% extends "BaseField.php.twig" %}
+
+{% block FieldAnnotations %}
+{{ parent() }}     * @TOGU\Type(type="reference")
+{% endblock FieldAnnotations %}
+
+{% block PhpType %}Model{% endblock PhpType %}
+
+{% block JMSType %}reference{% endblock JMSType %}
+
+{% block PhpcrType %}ReferenceMany{% endblock PhpcrType %}
+
+{% block PhpcrAttr %}strategy="hard"{% endblock PhpcrAttr %}
+
+{% block Accessors %}
+    /**
+     * Add {{ fieldName }}
+     *
+     * @param ${{ fieldName }} Model
+     * @return Model
+     */
+    public function add{{ ucFirstFieldName }}(/*Model*/ ${{ fieldName }})
+    {
+        $this->{{ fieldName }}[] = ${{ fieldName }};
+        return $this;
+    }
+
+    /**
+     * Remove {{ fieldName }}
+     *
+     * @param Model ${{ fieldName }}
+     */
+    public function remove{{ ucFirstFieldName }}(${{ fieldName }})
+    {
+        $this->sections->removeElement(${{ fieldName }});
+    }
+    
+    /**
+     * Get {{ fieldName }}
+     *
+     * @return Collection 
+     */
+    public function get{{ ucFirstFieldName }}()
+    {
+        return $this->{{ fieldName }};
+    }    
+
+    /**
+     * Initialize {{ fieldName }}
+     *
+     * @return {{ block('PhpType') }}
+     */
+    public function init{{ ucFirstFieldName }}($params)
+    {
+    	$this->{{ fieldName }} = new ArrayCollection();
+    	return $this;
+    }
+{% endblock Accessors %}

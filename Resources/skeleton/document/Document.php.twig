@@ -1,0 +1,34 @@
+<?php 
+
+namespace {{ namespace }};
+
+use {{ baseModelClass }};
+
+use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
+use Tpg\ExtjsBundle\Annotation as Extjs;
+use JMS\Serializer\Annotation as JMS;
+use Togu\AnnotationBundle\Annotation as TOGU;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * {{ description }}
+ *
+ * @Extjs\Model(name="{{ extJsModel }}")
+ * @Extjs\ModelProxy(option={"extraParams": {"entity": "{{ modelName }}"}}, name="entity")
+ * 
+ * @PHPCR\Document(
+ *   referenceable=true,
+ *   versionable="simple",
+ *   translator="{{ translator }}"
+ * )
+ *
+ * @TOGU\Model(name="{{ modelName }}")
+ */
+class {{ className }} extends {{ extends }} {
+	use Generated\{{ className }};
+
+	public function __construct($params = array()) {
+		parent::__construct($params);
+		$this->initialize($params);
+	}
+}

@@ -1,0 +1,48 @@
+{% extends "BaseField.php.twig" %}
+
+{% block PhpType %}Section{% endblock PhpType %}
+
+{% block JMS %}{% if serialize %}	 * @JMS\SerializedName("{{ fieldName }}") 
+{% else %}
+	* @JMS\Exclude
+{% endif %}
+{% endblock JMS %}
+
+{% block PhpcrType %}ReferenceOne{% endblock PhpcrType %}
+
+{% block PhpcrAttr %}strategy="hard",cascade="all"{% endblock PhpcrAttr %}
+
+
+{% block setter %}
+    /**
+     * Set {{ fieldName }}
+	 *
+     * @param {{ block('PhpType') }} ${{ fieldName }}
+     * @return Model
+     */
+    public function set{{ ucFirstFieldName }}(${{ fieldName }})
+    {
+        $this->{{ fieldName }} = ${{ fieldName }};
+        if(${{ fieldName }}) {
+        	${{ fieldName }}->setParentDocument($this);
+        }
+        return $this;
+    }
+{% endblock setter %}
+
+{% block initializer %}
+    /**
+     * Initialize {{ fieldName }}
+     *
+     * @return {{ block('PhpType') }}
+     */
+    public function init{{ ucFirstFieldName }}($params)
+    {
+		$this->set{{ field.ucFirstFieldName }}(
+			isset($params['{{field.fieldName}}']) && $params['{{field.fieldName}}'] instanceof \Application\Togu\ApplicationModelsBundle\Document\Section 
+				? $params['{{field.fieldName}}'] 
+				: new Section());
+		return $this;
+    }
+{% endblock initializer %}
+    

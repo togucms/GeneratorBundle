@@ -1,0 +1,56 @@
+{% block property %}
+	/**
+{% block FieldAnnotations %}
+	 * 
+{% block JMS %}	 * @JMS\Type("{% block JMSType %}{% endblock JMSType %}")
+	 * @JMS\SerializedName("{{ fieldName }}")
+{% endblock JMS %}
+	 * @var {% block PhpType %}{% endblock PhpType %} 
+	 * @PHPCR\{% block PhpcrType %}{% endblock PhpcrType %}({% block PhpcrAttr %}{% if translated %}translated=true{% endif %}{% if translated and nullable %},{% endif %}{% if nullable %}nullable=true{% endif %}{% endblock PhpcrAttr %})
+{% endblock FieldAnnotations %}
+	 */
+	protected ${{ fieldName }};
+{% endblock property %}
+	
+{% block Accessors %}
+{% block setter %}
+    /**
+     * Set {{ fieldName }}
+	 *
+     * @param {{ block('PhpType') }} ${{ fieldName }}
+     * @return Model
+     */
+    public function set{{ ucFirstFieldName }}(${{ fieldName }})
+    {
+        $this->{{ fieldName }} = ${{ fieldName }};
+        return $this;
+    }
+{% endblock setter %}
+
+{% block getter %}
+    /**
+     * Get {{ fieldName }}
+     *
+     * @return {{ block('PhpType') }}
+     */
+    public function get{{ ucFirstFieldName }}()
+    {
+        return $this->{{ fieldName }};
+    }
+{% endblock getter %}
+    
+{% block initializer %}
+    /**
+     * Initialize {{ fieldName }}
+     *
+     * @return {{ block('PhpType') }}
+     */
+    public function init{{ ucFirstFieldName }}($params)
+    {
+        $this->set{{ ucFirstFieldName }}(isset($params['{{ fieldName }}']) ? $params['{{ fieldName }}'] : {{ defaultValue }});
+        return $this;
+    }
+{% endblock initializer %}
+    
+{% endblock Accessors %}
+

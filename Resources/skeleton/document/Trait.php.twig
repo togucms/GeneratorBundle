@@ -1,0 +1,24 @@
+<?php 
+
+namespace {{ namespace }}\Generated;
+
+use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
+use Tpg\ExtjsBundle\Annotation as Extjs;
+use JMS\Serializer\Annotation as JMS;
+use Togu\AnnotationBundle\Annotation as Togu;
+use Doctrine\Common\Collections\ArrayCollection;
+use Application\Togu\ApplicationModelsBundle\Document\Section;
+
+trait {{ className }} {
+{% for field in fields %}{% if not field.exclude %}
+{% include field.tpl with field %}
+{% endif %}{% endfor %}
+	/**
+	 * Initializes the Document
+	 */
+	public function initialize($params) {
+{% for field in fields %}{% if not field.exclude %}
+		$this->init{{ field.ucFirstFieldName }}($params);
+{% endif %}{% endfor %}
+	}
+}

@@ -1,0 +1,16 @@
+{% extends "BaseField.php.twig" %}
+
+
+{% block FieldAnnotations %}
+{{ parent() }}	 * @TOGU\Type(type="link")
+{% endblock FieldAnnotations %}
+
+{% block PhpType %}Model{% endblock PhpType %}
+
+{% block JMSType %}link{% endblock JMSType %}
+
+{% block PhpcrType %}ReferenceOne{% endblock PhpcrType %}
+
+{% block PhpcrAttr %}strategy="hard"{% endblock PhpcrAttr %}
+
+    

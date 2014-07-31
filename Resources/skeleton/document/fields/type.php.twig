@@ -1,0 +1,10 @@
+    /**
+     * Initialize {{ fieldName }}
+     *
+     * @return {{ block('PhpType') }}
+     */
+    public function init{{ ucFirstFieldName }}($params)
+    {
+        $this->set{{ ucFirstFieldName }}(isset($params['{{ fieldName }}']) ? $params['{{ fieldName }}'] : {{ defaultValue }});
+        return $this;
+    }

@@ -1,0 +1,11 @@
+{% extends "BaseField.php.twig" %}
+
+{% block FieldAnnotations %}
+{{ parent() }}	 * @TOGU\Type(type="image")
+{% endblock FieldAnnotations %}
+
+{% block JMSType %}image{% endblock JMSType %}
+
+{% block PhpType %}Application\Sonata\MediaBundle\Entity\Media{% endblock PhpType %}
+
+{% block PhpcrType %}Int{% endblock PhpcrType %}
