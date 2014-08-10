@@ -14,6 +14,18 @@
 
 {% block Accessors %}
     /**
+     * Set {{ fieldName }}
+	 *
+     * @param {{ block('PhpType') }} ${{ fieldName }}
+     * @return Model
+     */
+    public function set{{ ucFirstFieldName }}(${{ fieldName }})
+    {
+        $this->{{ fieldName }} = ${{ fieldName }};
+        return $this;
+    }
+
+    /**
      * Add {{ fieldName }}
      *
      * @param ${{ fieldName }} Model

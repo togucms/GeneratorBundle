@@ -6,7 +6,9 @@
 	 * @JMS\SerializedName("{{ fieldName }}")
 {% endblock JMS %}
 	 * @var {% block PhpType %}{% endblock PhpType %} 
-	 * @PHPCR\{% block PhpcrType %}{% endblock PhpcrType %}({% block PhpcrAttr %}{% if translated %}translated=true{% endif %}{% if translated and nullable %},{% endif %}{% if nullable %}nullable=true{% endif %}{% endblock PhpcrAttr %})
+{% if persist %}
+	 * @PHPCR\{% block PhpcrType %}{% endblock PhpcrType %}({% block PhpcrAttr %}{% if translated %}translated=true{% endif %}{% if translated and nullable %},{% endif %}{% if nullable %}nullable=true{% endif %}{% endblock PhpcrAttr %}) 
+{% endif %}
 {% endblock FieldAnnotations %}
 	 */
 	protected ${{ fieldName }};

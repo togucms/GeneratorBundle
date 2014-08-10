@@ -156,7 +156,7 @@ class UserModelGenerator extends Generator
     		'fieldName' => $fieldName,
     		'ucFirstFieldName' => ucfirst($fieldName),
     		'defaultValue' => var_export(isset($fieldModel['defaultValue']) ? $fieldModel['defaultValue'] : null, true),
-    		'exclude' => isset($fieldModel['persist']) && $fieldModel['persist'] === false,
+    		'persist' => ! isset($fieldModel['persist']) || $fieldModel['persist'] !== false,
     		'type' => $fieldModel['type'],
     		'tpl' => 'fields/' . strtolower($fieldModel['type']) . '.php.twig',
     		'translated' => isset($fieldModel['translated']) && $fieldModel['translated'] !== false,

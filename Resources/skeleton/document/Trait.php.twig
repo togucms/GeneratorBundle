@@ -10,14 +10,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Application\Togu\ApplicationModelsBundle\Document\Section;
 
 trait {{ className }} {
-{% for field in fields %}{% if not field.exclude %}
+{% for field in fields %}
 {% include field.tpl with field %}
-{% endif %}{% endfor %}
+{% endfor %}
 	/**
 	 * Initializes the Document
 	 */
 	public function initialize($params) {
-{% for field in fields %}{% if not field.exclude %}
+{% for field in fields %}{% if field.persist %}
 		$this->init{{ field.ucFirstFieldName }}($params);
 {% endif %}{% endfor %}
 	}

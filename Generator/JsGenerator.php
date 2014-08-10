@@ -102,7 +102,7 @@ class JsGenerator extends Generator
     		$fieldConfig[] = array(
     			'name' => $fieldName,
     			'type' => $fieldData['model']['type'],
-    			'defaultValue' => $fieldData['model']['defaultValue']
+    			'defaultValue' => isset($fieldData['model']['defaultValue']) ? $fieldData['model']['defaultValue'] : null
     		);
     	}
     	return $fieldConfig;
