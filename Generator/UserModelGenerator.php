@@ -112,6 +112,10 @@ class UserModelGenerator extends Generator
     			throw new \InvalidArgumentException(sprintf('The leaf parameter must be specified for the model %s', $modelName));
     		}
     		$fields[] = $this->getFieldConfig('sectionConfig', array('type' => 'sectionConfig', 'serialize' => $modelName != "rootModel"));
+
+    		if($modelConfig['section']['leaf'] === true) {
+    			$fields[] = $this->getFieldConfig('link', array('type' => 'sectionLink', 'persist' => false));
+    		}
     	}
 
     	if($modelName == "rootModel") {

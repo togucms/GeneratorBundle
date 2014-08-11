@@ -1,0 +1,37 @@
+{% extends "BaseField.php.twig" %}
+
+{% block FieldAnnotations %}
+{{ parent() }}	 * @TOGU\Type(type="link")
+	 * @JMS\Accessor(getter="get{{ ucFirstFieldName }}",setter="set{{ ucFirstFieldName }}")
+{% endblock FieldAnnotations %}
+
+{% block PhpType %}Model{% endblock PhpType %}
+
+{% block JMSType %}link{% endblock JMSType %}
+
+{% block setter %}
+    /**
+     * Set {{ fieldName }}
+	 *
+     * @param {{ block('PhpType') }} ${{ fieldName }}
+     * @return Model
+     */
+    public function set{{ ucFirstFieldName }}(${{ fieldName }})
+    {
+        return $this;
+    }
+{% endblock setter %}
+
+{% block getter %}
+    /**
+     * Get {{ fieldName }}
+     *
+     * @return {{ block('PhpType') }}
+     */
+    public function get{{ ucFirstFieldName }}()
+    {
+        return $this->getSectionConfig()->getPage();
+    }
+{% endblock getter %}
+    
+    

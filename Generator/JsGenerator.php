@@ -78,17 +78,27 @@ class JsGenerator extends Generator
     protected function getFieldConfig($modelConfig) {
     	$fieldConfig = array();
 
-    	if(isset($modelConfig['section']) && $modelConfig['section']['leaf'] === false) {
+    	if(isset($modelConfig['section'])) {
     		if(! isset($modelConfig['fields'])) {
     			$modelConfig['fields'] = array();
     		}
-    		$modelConfig['fields']['nextSection'] = array(
-    			'model' => array(
-   					'type' => 'reference',
-   					'persist' => false,
-   					'defaultValue' => array()
-   				)
-    		);
+    		if($modelConfig['section']['leaf'] === false) {
+	    		$modelConfig['fields']['nextSection'] = array(
+	    			'model' => array(
+	   					'type' => 'reference',
+	   					'persist' => false,
+	   					'defaultValue' => array()
+	   				)
+	    		);
+    		} else {
+    			$modelConfig['fields']['nextSection'] = array(
+    				'model' => array(
+    					'type' => 'link',
+    					'persist' => false,
+    					'defaultValue' => 1
+    				)
+    			);
+    		}
     	}
 
     	if(! isset($modelConfig['fields'])) {
