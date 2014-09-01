@@ -12,6 +12,10 @@
 
 {% block PhpcrAttr %}strategy="hard",cascade="all"{% endblock PhpcrAttr %}
 
+{% block FieldAnnotations %}
+{{ parent() }}	 * @Extjs\Model\Field(type="auto", persist=false)
+{% endblock FieldAnnotations %}
+
 
 {% block setter %}
     /**
